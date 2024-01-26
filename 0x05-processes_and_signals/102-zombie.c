@@ -1,42 +1,49 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include <unistd.h>
+#include <stdlib.h>
+#include<sys/types.h>
+
+/**
+ *  infinite_while - Infinite while loop
+ *
+ *  Return: Integer
+ */
 
 int infinite_while(void)
 {
 	while (1)
 	{
-	sleep(1);
+		sleep(1);
 	}
 	return (0);
 }
 
+/**
+ *  main - Main driver function
+ *
+ *  Return: Void
+ */
+
 int main(void)
 {
-	int i;
-	for (i = 0; i < 5; i++)
-	{
-	pid_t child_pid = fork();
 
-	if (child_pid > 0)
+	pid_t zombie;
+	int index;
+
+	for (index = 0; index < 5; index++)
 	{
-	// Parent process
-	printf("Zombie process created, PID: %d\n", child_pid);
-	}
-	else if (child_pid == 0)
-	{
-	// Child process exits immediately, becoming a zombie
-	exit(0);
-	}
-	else
-	{
-	// Fork failed
-	perror("fork");
-	return (1);
-	}
+		zombie = fork();
+		if (zombie > 0)
+		{
+			printf("Zombie process created, PID: %d\n", zombie);
+		}
+		else
+		{
+			exit(0);
+		}
 	}
 
-	infinite_while(); // Keep the parent process alive
+	infinite_while();
 
 	return (0);
 }

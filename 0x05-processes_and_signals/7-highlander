@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 #Function to handle SIGTERM signal
-terminate() {
+terminate()
+{
     echo "I am invincible!!!"
     exit 0
 }

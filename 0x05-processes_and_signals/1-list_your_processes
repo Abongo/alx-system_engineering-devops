@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #Display header
 echo "USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND"
 #Use ps command to display processes
